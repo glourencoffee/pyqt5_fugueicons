@@ -1,0 +1,10 @@
+__pycache__
+pyqt5_fugueicons.egg-info
+.vscode
+resources/bonus
+resources/icons
+resources/icons-shadowless
+resources/CHANGELOG.txt
+resources/combination.png
+resources/FILENAME.txt
+resources/README.txt
