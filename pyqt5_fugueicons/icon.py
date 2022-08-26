@@ -9,7 +9,7 @@ def _iconNames() -> typing.List[str]:
     open_mode = QtCore.QIODevice.OpenModeFlag.ReadOnly | QtCore.QIODevice.OpenModeFlag.Text
 
     if not file.open(open_mode):
-        print("pyqt5_fugueicons: missing resource file '", file.fileName(), "'", sep='')
+        QtCore.qWarning(f"pyqt5_fugueicons: missing resource file '{file.fileName()}'")
         return []
 
     stream    = QtCore.QTextStream(file)
@@ -50,11 +50,11 @@ def icon(name: str, shadowless: bool = False, size: int = 16, fallback_size: boo
     """
 
     if name not in iconNames():
-        print("pyqt5_fugueicons: '", name, "' does not name a Fugue icon", sep='')
+        QtCore.qWarning(f"pyqt5_fugueicons: '{name}' does not name a Fugue icon")
         return QtGui.QIcon()
         
     if size not in (16, 24, 32):
-        print('pyqt5_fugueicons: icon size must be either 16, 24, or 32')
+        QtCore.qWarning(f'pyqt5_fugueicons: icon size must be either 16, 24, or 32 (got: {size})')
         return QtGui.QIcon()
 
     file_path = ':/fugue/icons'
@@ -70,13 +70,13 @@ def icon(name: str, shadowless: bool = False, size: int = 16, fallback_size: boo
         if not icon.pixmap(size).isNull():
             return icon
 
-        shadow_desc = '(shadowless)' if shadowless else ''
+        shadow_desc = 'shadowless' if shadowless else 'shadowed'
 
         if size > 16 and fallback_size:
             new_size = size - 8
 
-            print("pyqt5_fugueicons: '", name, "' ", shadow_desc, " was not found at size ", size, ", trying ", new_size, sep='')
+            QtCore.qWarning(f"pyqt5_fugueicons: '{name}' ({shadow_desc}) was not found with size {size}, trying {new_size}")
             size = new_size
         else:
-            print("pyqt5_fugueicons: '", name, "' ", shadow_desc, " was not found at size ", size, sep='')
+            QtCore.qWarning(f"pyqt5_fugueicons: '{name}' ({shadow_desc}) was not found with size {size}")
             return QtGui.QIcon()

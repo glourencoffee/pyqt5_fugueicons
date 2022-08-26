@@ -1,6 +1,6 @@
 import functools
 import typing
-from PyQt5 import QtGui
+from PyQt5 import QtCore, QtGui
 
 @functools.lru_cache
 def _movieNames() -> typing.List[str]:
@@ -51,11 +51,11 @@ def movie(name: str, shadowless: bool = False, size: int = 16, fallback_size: bo
     """
 
     if name not in movieNames():
-        print("pyqt5_fugueicons: '", name, "' does not name a Fugue animated icon", sep='')
+        QtCore.qWarning(f"pyqt5_fugueicons: '{name}' does not name a Fugue animated icon")
         return QtGui.QMovie()
 
     if size not in (16, 24):
-        print('pyqt5_fugueicons: animated icon size must be either 16 or 24')
+        QtCore.qWarning(f'pyqt5_fugueicons: icon size must be either 16 or 24 (got: {size})')
         return QtGui.QMovie()
     
     file_path = ':/fugue/movies'
@@ -71,13 +71,13 @@ def movie(name: str, shadowless: bool = False, size: int = 16, fallback_size: bo
         if movie.isValid():
             return movie
 
-        shadow_desc = '(shadowless)' if shadowless else ''
+        shadow_desc = 'shadowless' if shadowless else 'shadowed'
 
         if size > 16 and fallback_size:
             new_size = size - 8
 
-            print("pyqt5_fugueicons: '", name, "' ", shadow_desc, " was not found at size ", size, ", trying ", new_size, sep='')
+            QtCore.qWarning(f"pyqt5_fugueicons: '{name}' ({shadow_desc}) was not found with size {size}, trying {new_size}")
             size = new_size
         else:
-            print("pyqt5_fugueicons: '", name, "' ", shadow_desc, " was not found at size ", size, sep='')
+            QtCore.qWarning(f"pyqt5_fugueicons: '{name}' ({shadow_desc}) was not found with size {size}")
             return QtGui.QMovie()
