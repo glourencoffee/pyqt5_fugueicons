@@ -56,9 +56,9 @@ of the same icon with dimensions 16x16. If still no icon is found, an empty
 
 ## Icon Names
 
-Icon names can be found in the author's [website][fugue-website] or in the file under
-`resources/FILENAME.txt`. An icon name is simply its file name without the extension.
-The function `iconNames()` returns all icon names:
+Icon names can be found in the author's [website][fugue-website]. An icon name
+is simply its file name without the extension. The function `iconNames()` returns
+all icon names:
 
 ```py
 for name in fugue.iconNames():
