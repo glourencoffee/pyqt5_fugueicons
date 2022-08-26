@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='pyqt5_fugueicons',
-    version='3.5.6.0',
+    version='3.5.6.1',
     description='Fugue Icons for PyQt5',
     long_description=readme,
     long_description_content_type='text/markdown',
