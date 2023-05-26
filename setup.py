@@ -5,13 +5,13 @@ with open('README.md') as f:
 
 setup(
     name='pyqt5_fugueicons',
-    version='3.5.6.1',
+    version='3.5.6.2',
     description='Fugue Icons for PyQt5',
     long_description=readme,
     long_description_content_type='text/markdown',
-    author='Giovanni L',
-    author_email='callmegiorgio@hotmail.com',
-    url='https://github.com/callmegiorgio/pyqt5_fugueicons',
+    author='Giovanni Lourenço',
+    author_email='gvnl.developer@outlook.com',
+    url='https://github.com/glourencoffee/pyqt5_fugueicons',
     license='MIT',
     packages=['pyqt5_fugueicons'],
     keywords=['pyqt5', 'icons'],
